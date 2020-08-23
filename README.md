@@ -1,4 +1,4 @@
-# flutter-repository
+# RepoFluApp
 
 Project with provider state manager and tests flutter
 
