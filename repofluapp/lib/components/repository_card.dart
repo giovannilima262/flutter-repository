@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:repofluapp/components/new_outline_button.dart';
 import 'package:repofluapp/components/title_repository.dart';
-import 'package:repofluapp/language/demo_localizations.dart';
 import 'package:repofluapp/models/repository.dart';
 import 'package:repofluapp/utils/format_date.dart';
 
 class RepositoryCard extends StatelessWidget {
   const RepositoryCard({
     @required this.value,
+    @required this.textButton,
     this.onSave,
   });
   final RepositoryModel value;
   final Function onSave;
+  final String textButton;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -82,7 +83,7 @@ class RepositoryCard extends StatelessWidget {
               ],
             ),
             NewOutlineButton(
-              text: DemoLocalizations.of(context).saveRepo,
+              text: textButton,
               onPressed: onSave,
             ),
           ],

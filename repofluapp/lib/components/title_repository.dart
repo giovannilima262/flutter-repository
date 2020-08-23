@@ -18,9 +18,10 @@ class TitleRepository extends StatelessWidget {
         Text(
           title ?? '',
           style: TextStyle(
-              color: ColorTeam.blueDark,
-              fontWeight: FontWeight.bold,
-              fontSize: 16),
+            color: ColorTeam.blueDark,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
         ),
       ],
     );

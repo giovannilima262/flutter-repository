@@ -7,7 +7,7 @@ class FlutterRepository {
   final url = 'https://api.github.com/orgs/flutter/repos';
 
   Future<Response> allRepositories({
-    client,
+    http.Client client,
     int page = 1,
     int perPage = 30,
   }) async {

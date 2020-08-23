@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:repofluapp/api/flutter_repository.dart';
 import 'package:repofluapp/api/response.dart';
 import 'package:repofluapp/models/repository.dart';
+import 'package:http/http.dart' as http;
 
 class RepositoryList extends ChangeNotifier {
   final flutterRepository = FlutterRepository();
   final List<RepositoryModel> _items = [];
   int _page = 1;
   int _perPage = 30;
-  bool _isFetching = false;
   EnumResponse _statusFetching;
 
   UnmodifiableListView<RepositoryModel> get items =>
       UnmodifiableListView(_items);
 
-  bool get isFetching => _isFetching;
   EnumResponse get statusFetching => _statusFetching;
   List<RepositoryModel> get favoritesItems =>
       _items.where((i) => i.isFavorite).toList();
@@ -30,9 +29,9 @@ class RepositoryList extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getAllRepositories() {
+  void getAllRepositories(http.Client client) {
     flutterRepository
-        .allRepositories(page: _page, perPage: _perPage)
+        .allRepositories(client: client, page: _page, perPage: _perPage)
         .then((data) {
       _statusFetching = data.status;
       if (data.status == EnumResponse.error) {

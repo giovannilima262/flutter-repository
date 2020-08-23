@@ -11,6 +11,7 @@ class RepositoryCardFavorite extends StatelessWidget {
   final Function onRemove;
   @override
   Widget build(BuildContext context) {
+    Key keyRemove = Key('remove');
     return Card(
       margin: EdgeInsets.all(10),
       child: Padding(
@@ -31,6 +32,7 @@ class RepositoryCardFavorite extends StatelessWidget {
                   ),
                 ),
                 IconButton(
+                  key: keyRemove,
                   icon: Icon(
                     Icons.delete,
                     color: Colors.red,

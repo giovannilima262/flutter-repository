@@ -10,34 +10,29 @@ class Favorite extends StatefulWidget {
 }
 
 class _FavoriteState extends State<Favorite> {
-  RepositoryList repositoryList;
-
   @override
   Widget build(BuildContext context) {
-    repositoryList = Provider.of<RepositoryList>(
-      context,
-      listen: true,
-    );
-
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text(
-          DemoLocalizations.of(context).savedRepositories,
+    return Consumer<RepositoryList>(builder: (context, repositoryList, child) {
+      return Scaffold(
+        appBar: AppBar(
+          centerTitle: false,
+          title: Text(
+            DemoLocalizations.of(context).savedRepositories,
+          ),
         ),
-      ),
-      body: ListView.builder(
-        itemCount: repositoryList.favoritesItems.length,
-        itemBuilder: (context, index) {
-          final item = repositoryList.favoritesItems[index];
-          return RepositoryCardFavorite(
-              value: item,
-              onRemove: () {
-                item.isFavorite = false;
-                repositoryList.update();
-              });
-        },
-      ),
-    );
+        body: ListView.builder(
+          itemCount: repositoryList.favoritesItems.length,
+          itemBuilder: (context, index) {
+            final item = repositoryList.favoritesItems[index];
+            return RepositoryCardFavorite(
+                value: item,
+                onRemove: () {
+                  item.isFavorite = false;
+                  repositoryList.update();
+                });
+          },
+        ),
+      );
+    });
   }
 }
